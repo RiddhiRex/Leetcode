@@ -21,3 +21,21 @@ class Solution(object):
             if v!=0:
                 print k
                 return k
+
+solution2:
+class Solution(object):
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        ans=""
+        for each in s:
+            if each in t:
+                t = t.replace(each, "", 1)
+            else:
+                ans=ans+each
+        ans=ans+t
+        return ans
+        
