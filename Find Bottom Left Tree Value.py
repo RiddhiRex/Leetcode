@@ -12,17 +12,17 @@ class Solution:
         :rtype: int
         """
         ans = []
-        def traverse(node, depth, l):
+        def traverse(node, depth):
             if node is None:
                 return None
             if depth>len(ans):
                 ans.append(node.val)
-            traverse(node.left, depth+1, l)
-            traverse(node.right, depth+1, l)
+            traverse(node.left, depth+1)
+            traverse(node.right, depth+1)
             
         if root is None:
             return None
         else:
-            traverse(root, 1, [])
+            traverse(root, 1)
             return ans[-1]
         
