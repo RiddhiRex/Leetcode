@@ -1,3 +1,5 @@
+#Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+#
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
