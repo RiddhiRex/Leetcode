@@ -16,8 +16,6 @@ class Solution(object):
             else:
                 return False
             idx+=1   
-            if(w=="eaabcdgfa"):
-                print(brd)
         return True
                 
     def findWords(self, board, words):
