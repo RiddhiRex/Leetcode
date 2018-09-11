@@ -1,3 +1,5 @@
+# Given a binary tree, return all root-to-leaf paths.
+#
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
