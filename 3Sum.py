@@ -7,7 +7,6 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         l=[]
-        loopup={}
         nums=sorted(nums)
 
         for i in range(len(nums)-2):
