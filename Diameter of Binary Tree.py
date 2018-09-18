@@ -11,14 +11,14 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        if root is None:
-            return 0
-        
         def getDepth(node):
             if node is None:
                 return 0
             else:
                 return max(getDepth(node.left), getDepth(node.right))+1
+            
+        if root is None:
+            return 0
         d1 = getDepth(root.left)+getDepth(root.right)
         ld = self.diameterOfBinaryTree(root.left)
         rd = self.diameterOfBinaryTree(root.right)
