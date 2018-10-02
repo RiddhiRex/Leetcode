@@ -24,15 +24,13 @@ class Solution(object):
                 return "Zero"
             else:
                 if(nolen)>=2:
-                    print("here")
+               
                     if int(no[nolen-2])==1:
-                        print("asdasd")
                         for i in teens:
                             if int(no[nolen-1])==i:
                                 ans.insert(0, teens[i])
                                 break
                     else:
-                        print("theree")
                         for i in ones:
                             if int(no[nolen-1])==i and ones[i]!="":
                                 ans.insert(0, ones[i])
