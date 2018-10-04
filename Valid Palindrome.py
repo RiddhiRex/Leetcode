@@ -19,3 +19,20 @@ class Solution(object):
                 i+=1
                 j-=1
         return True
+
+#solution 2
+import string
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        i=0
+        s=s.lower()
+        while(i<len(s)):
+            if s[i] in string.punctuation or s[i]==" ":
+                s = s[0:i]+s[i+1:]
+            else:
+                i+=1
+        return s==s[::-1]
