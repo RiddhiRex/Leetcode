@@ -23,3 +23,24 @@ class Solution:
                
         return (li)
         
+        
+        #solution 2:
+    class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        ans = []
+        i=0
+        dic = {}
+        for each in strs:
+            if "".join(sorted(each)) not in dic:
+                dic["".join(sorted(each))]=[each]
+            else:
+                dic["".join(sorted(each))].append(each)
+        return dic.values()
+            
+                
+            
+            
