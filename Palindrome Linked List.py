@@ -21,7 +21,7 @@ class Solution(object):
         else:
             return False
             
-#Solution 2 with no extra space       
+#Solution 2 with no extra space and by reversing the first half of list      
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
