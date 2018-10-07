@@ -15,3 +15,25 @@ class Solution:
                     b = b>>1
                 xor = xor + bit
         return xor
+    
+    
+#method 2: assume 32 bit length and compare ith bit of all numbers and if ith bit is set, increment cnt.
+#those for which ith bit is not set is found by n-cnt.
+#product both and add to sum
+import itertools
+class Solution(object):
+    def totalHammingDistance(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sum=0
+        n = len(nums)
+        for i in range(32):
+            cnt=0
+            for no in nums:
+                if(no & (1<<i)):
+                    cnt+=1
+            sum+= (cnt*(n-cnt))
+        return sum
+        
