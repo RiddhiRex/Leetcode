@@ -19,3 +19,31 @@ class Solution(object):
                         del st[item]
                     break
         return ans[1:]
+
+    
+    Solution 2:
+    class Solution(object):
+    def reorganizeString(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        d = collections.Counter(S)
+        l = len(S)
+        if l%2==0:
+            limit=l/2
+        else:
+            limit=(l/2)+1
+        for k,v in d.items():
+            if v>limit:
+                return ""
+            
+        d = sorted(d.items(), key=operator.itemgetter(1))
+        ans =[None]*l
+        a= []
+        for k, v in d:
+            a.append(k*v)
+        a ="".join(a)
+        ans[0::2] = a[l/2:]
+        ans[1::2] = a[:l/2]
+        return "".join(ans)
