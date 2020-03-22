@@ -37,3 +37,23 @@ class Solution(object):
             d[total_sum]+=1
 
         return result  
+
+    Solution 2 copy
+    class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        total = 0
+        cnt = 0
+        sum_dict = collections.defaultdict(int)
+        sum_dict[0]=1
+
+        for i in range(len(nums)):
+            total+=nums[i]
+            cnt+=sum_dict[total-k]
+            sum_dict[total]+=1
+
+        return cnt
