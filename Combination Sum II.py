@@ -12,3 +12,21 @@ class Solution:
         return ans
         
         solution 2:
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(nums, trgt, idx, ans, path):
+            if trgt==0:
+                if path not in ans:
+                    ans.append(path)
+                return
+            if trgt<0:
+                return
+            for i in range(idx, len(candidates)):
+                dfs(nums, trgt-nums[i], i+1, ans, path+[nums[i]])
+            return
+                
+        candidates.sort()
+        ans = []
+        dfs(candidates, target, 0, ans, [])
+        return ans
+        
