@@ -13,3 +13,14 @@ class Solution(object):
                 wdict[each]+=1
         return sorted(sorted(wdict), key=wdict.get, reverse=True)[:k]
         
+Solution 2:
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        wrds = collections.Counter(words)
+        ans = []
+        wds = sorted(wrds.items(), key=operator.itemgetter(1), reverse=True)[:k]
+        for i, w in enumerate(wds):
+                ans.append(w[0])
+        return ans
+            
+        
