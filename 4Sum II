@@ -1,0 +1,10 @@
+class Solution:
+    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
+        sum_ab = collections.Counter(i+j for i in A for j in B)
+        sum_cd = collections.Counter(i+j for i in C for j in D)
+        total = 0
+        for k in sum_ab.keys():
+            if (-1 * k) in sum_cd.keys():
+                total += sum_ab[k] * sum_cd[-1 * k]
+        return total
+                
