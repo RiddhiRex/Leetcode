@@ -6,10 +6,12 @@ class Solution(object):
         :rtype: str
         """
         if(numerator%denominator==0):
-            return str(numerator/denominator)
+            return str(numerator//denominator)
+        
         res=""
         if(numerator<0 and denominator>0 or numerator>0 and denominator<0):
             res+="-"
+            
         num = abs(numerator)
         den= abs(denominator)
         res +=str(num/den)
@@ -17,11 +19,12 @@ class Solution(object):
         
         if(num>0):
             res+="."
+            
         lookup = {}
         while(num and num not in lookup):
             lookup[num]=len(res)
             num=num*10
-            res+=str(num/den)
+            res+=str(num//den)
             num=num%den
             
         if num in lookup:
