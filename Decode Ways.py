@@ -1,6 +1,6 @@
-#dp[i]  =   dp[i−1]+dp[i−2],   10 <=s[i-2:2]<=26 and s[i−2:2]!=[10 or 20]
+#dp[i]  =   dp[i−1]+dp[i−2],   10 <=s[i-2:i]<=26 and s[i−2:i]!=[10 or 20]
 #           dp[i−2],   s[i-2:i] = [10 or 20]
-#           dp[i−1],   others
+#           dp[i−1],   s[i-1]!=0
 
 class Solution(object):
     def numDecodings(self, s):
@@ -22,9 +22,7 @@ class Solution(object):
                 
             elif s[i-1]!="0":
                 dp[i]=dp[i-1]
-                
-            else:
-                return 0
+
         return dp[len(s)]
 
         
