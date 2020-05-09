@@ -10,6 +10,8 @@ class Solution:
 
     def pickIndex(self) -> int:
         val = random.randint(0, self.sum[-1]-1)
+        '''
+        #Method 1:
         l=0
         r = len(self.sum)-1
         while(l<r):
@@ -19,3 +21,8 @@ class Solution:
             else:
                 r = mid
         return r
+        '''
+        #Mehtod 2:
+        for i in range(len(self.sum)):
+            if self.sum[i]>val:
+                return i
