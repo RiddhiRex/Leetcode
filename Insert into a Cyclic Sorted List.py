@@ -15,7 +15,6 @@ class Solution:
 
         if head==None:
             head = Node(insertVal, None)
-            head = new_node
             head.next=head
             return head
         prev = head
