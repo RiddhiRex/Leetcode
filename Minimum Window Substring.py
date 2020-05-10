@@ -1,36 +1,30 @@
-class Solution(object):
-    def minWindow(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: str
-        """
-        dt=collections.defaultdict(int)
-        ds=collections.defaultdict(int)
-        start=0
-        cnt=0
-        short_start=0
-        shortest=float("inf")
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        ds = collections.defaultdict(int)
+        dt = collections.defaultdict(int)
+        start = 0
+        shortest_len = float("inf")
+        shortest_start_idx = 0
+        length = 0
+        for i in t:
+            dt[i]+=1
         i=0
-        for each in t:
-            dt[each]+=1
-            
         while(i<len(s)):
             ds[s[i]]+=1
             
             if ds[s[i]]<=dt[s[i]]:
-                cnt+=1
+                length+=1
                 
-            if cnt==len(t):
+            if length==len(t):
                 while(ds[s[start]]>dt[s[start]] or dt[s[start]]==0):
                     ds[s[start]]-=1
-                    start=start+1
+                    start+=1
+                if i-start+1<shortest_len:
+                    shortest_len=i-start+1
+                    shortest_start_idx = start
                     
-                if i-start+1<=shortest:
-                    shortest = i-start+1
-                    short_start=start 
             i+=1
-        if shortest==float("inf"):
+            
+        if shortest_len==float("inf"):
             return ""
-        return s[short_start:short_start+shortest]
-   
+        return s[shortest_start_idx:shortest_start_idx+shortest_len]
