@@ -1,0 +1,54 @@
+class Solution:
+    def largestIsland(self, grid: List[List[int]]) -> int:
+        dic = {}
+        id = 2
+        max_area = 0
+        seen_ids = []
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==1:
+                    dic[id]=self.dfs(grid, i, j, id)
+                    id+=1
+        max_area = max(dic.values() or [0])
+        print(max_area)
+        print(dic)
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                area = 0
+                seen_ids = []
+                if grid[i][j]==0:
+                    area+=1
+                    if(i-1>=0 and grid[i-1][j]!=0):
+                        area += dic[grid[i-1][j]]
+                        seen_ids.append(grid[i-1][j])
+                    if(i+1<len(grid) and grid[i+1][j]!=0) and grid[i+1][j] not in seen_ids:
+                        area += dic[grid[i+1][j]]
+                        seen_ids.append(grid[i+1][j])
+                    if(j-1>=0 and grid[i][j-1]!=0) and grid[i][j-1] not in seen_ids:
+                        area += dic[grid[i][j-1]]
+                        seen_ids.append(grid[i][j-1])
+                    if(j+1<len(grid[0]) and grid[i][j+1]!=0 and grid[i][j+1] not in seen_ids):
+                        area += dic[grid[i][j+1]]
+                        seen_ids.append(grid[i][j+1])
+                    print(area)
+                    max_area = max(max_area, area)
+        return max_area
+                
+
+
+    def dfs(self, grid, i, j, id):
+        if grid[i][j]!=1:
+            return 0
+        grid[i][j]=id
+        area=1
+
+        if(i-1>=0):
+            area +=self.dfs(grid, i-1, j, id)
+        if(i+1<len(grid)):
+            area +=self.dfs(grid, i+1, j, id)
+        if(j-1>=0):
+            area +=self.dfs(grid, i, j-1, id)
+        if(j+1<len(grid[0])):
+            area +=self.dfs(grid, i, j+1, id)
+        print(i, j, area)
+        return area
