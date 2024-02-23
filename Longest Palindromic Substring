@@ -1,0 +1,25 @@
+class Solution:
+    def expand_and_check(self, s, left, right):
+        #move outword from a letter and check left and right characters of it until they are same
+        while(left>=0 and right<len(s) and s[left] == s[right]):
+            left-=1
+            right+=1
+        return s[left+1:right]
+
+    def longestPalindrome(self, s: str) -> str:
+        if len(s)==1:
+            return s
+        max_substring = ""
+        for i in range(len(s)):
+            #checking for palimdrom string with odd length of characters
+            substring = self.expand_and_check(s, i, i)
+            if len(substring) > len(max_substring):
+                max_substring = substring
+            #checking for palimdrom string with even length of characters
+            substring = self.expand_and_check(s, i, i+1)
+            if len(substring) > len(max_substring):
+                max_substring = substring
+        return max_substring
+
+
+    
