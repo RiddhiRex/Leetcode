@@ -13,26 +13,29 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-
+        ans = []
         if root is None:
             return ""
-        curr_lvl=[root]
-        next_lvl = []
-        ans =[]
-
-        while(curr_lvl):
-            tmp_ans = ",".join(str(node.val) if node is not None else "*" for node in curr_lvl)
-            ans.append(tmp_ans)
+        cur_lvl = [root]
+        while(cur_lvl):
+            tmp_ans = []
             nxt_lvl = []
-            for each in curr_lvl:
-                if each is not None:
-                    nxt_lvl.append(each.left)  
-                    nxt_lvl.append(each.right)
+            for node in cur_lvl:
+                if node is not None:
+                        tmp_ans.append(str(node.val))
+                        nxt_lvl.append(node.left)
+                        nxt_lvl.append(node.right)
+                else:
+                    tmp_ans.append("*")
 
-            curr_lvl=nxt_lvl
 
+            ans.append(",".join(tmp_ans))       
+            cur_lvl = nxt_lvl
+        print(";".join(ans))
         return ";".join(ans)
-
+        
+        
+        
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -50,10 +53,11 @@ class Codec:
         for i in range(1, len(lvls)):
             curr_lvl=[]
             vals = lvls[i].split(",")
-            
+            print("jere")
             for i,v in enumerate(vals):
                 if v!="*":
                     node = TreeNode(int(v))
+                    print(i)
                     if(i%2)==0:
                         prev_lvl[i//2].left=node
                     else:
@@ -63,9 +67,9 @@ class Codec:
 
         return root
 
-                
-        
+
 
 # Your Codec object will be instantiated and called as such:
-# codec = Codec()
-# codec.deserialize(codec.serialize(root))
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
