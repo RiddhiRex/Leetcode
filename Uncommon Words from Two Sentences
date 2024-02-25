@@ -1,0 +1,12 @@
+class Solution:
+    def uncommonFromSentences(self, s1: str, s2: str) -> List[str]:
+        w1 = s1.split(" ")
+        w2 = s2.split(" ")
+        d = collections.Counter(w1)
+        d2 = collections.Counter(w2)
+        d.update(d2)
+        ans =[]
+        for k, v in d.items():
+            if v ==1:
+                ans.append(k)
+        return ans
