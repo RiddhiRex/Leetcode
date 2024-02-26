@@ -5,6 +5,61 @@
 #         self.label = x
 #         self.next = None
 #         self.random = None
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if head is None:
+            return None
+        cur1 = head
+        cur2= Node(head.val)
+        cur2.next = None
+        cur2.random = cur1
+        head2= cur2
+        next = {}
+        while(cur1.next is not None):
+            cur2.next = Node(cur1.next.val)
+            cur2.next.random = cur1.next
+            cur2 = cur2.next
+            cur1 = cur1.next
+        cur2.next = None
+
+        cur1 = head
+        cur2 = head2
+        while(cur1 is not None):
+            next[cur1]=cur1.next
+            cur1.next = cur2
+            cur1 = next[cur1]
+            cur2 = cur2.next
+
+        cur1 = head
+        cur2 = head2           
+        while(cur2 is not None):
+            if cur2.random is not None and cur2.random.random is not None:
+                cur2.random = cur2.random.random.next
+            else:
+                cur2.random = None
+            cur2 = cur2.next
+
+        while(cur1 is not None):
+            cur1.next = next[cur1]
+            cur1 = cur1.next
+        return head2
+
+        
+
+
+
+
+            
+            
+
 
 class Solution(object):
     def copyRandomList(self, head):
