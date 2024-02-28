@@ -1,3 +1,17 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals = sorted(intervals, key = operator.itemgetter(0))
+        ans = []
+        for s, e in intervals:
+            if ans and s<=ans[-1][1]:
+                ans[-1][1] = max(ans[-1][1], e)
+            else:
+                ans.append([s, e])
+        return ans
+            
+        
+
+
 # Definition for an interval.
 # class Interval:
 #     def __init__(self, s=0, e=0):
