@@ -1,0 +1,20 @@
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        intervals.extend([newInterval])
+
+        intervals = sorted(intervals, key = operator.itemgetter(0))
+        print(intervals)
+        ans = []
+        for s, e in intervals:
+            if len(ans)==0:
+                ans.append([s,e])
+            else:
+                if(ans[-1][1]>=s):
+                    ans[-1][1] = max(ans[-1][1], e)
+                else:
+                    ans.append([s, e])
+        return ans
+
+
+
+        
