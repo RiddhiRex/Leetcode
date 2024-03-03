@@ -1,0 +1,30 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        cur = [root]
+        if root is None:
+            return None
+        while(cur):
+            next_lvl = []
+            for i in range(len(cur)):
+                if i>0:
+                    cur[i-1].next = cur[i]
+                if(cur[i].left is not None):
+                    next_lvl.append(cur[i].left)
+                if(cur[i].right is not None):
+                    next_lvl.append(cur[i].right)    
+            cur[-1].next = None       
+            cur = next_lvl
+        return root
+
+
+        
