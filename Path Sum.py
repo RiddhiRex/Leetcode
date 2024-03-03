@@ -1,3 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        def traverse(node, cur_sum):
+            if node.left == None and node.right == None:
+                if cur_sum == sum:
+                    self.result = True
+                    return
+            if node.left is not None:
+                traverse(node.left, cur_sum+node.left.val)
+            if node.right is not None:
+                traverse(node.right, cur_sum+node.right.val)
+            return 
+
+        if root is None:
+            return False
+        self.result = False
+        traverse(root, root.val)
+        return self.result
+
+
 # Given a binary tree and a sum, 
 #determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
 # 
