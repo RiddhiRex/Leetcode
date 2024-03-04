@@ -1,4 +1,18 @@
 class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        self.ans = []
+
+        def generate(s, open, close):
+            if len(s)==2*n:
+                self.ans.append(s)
+            if(open<n):
+                generate(s+"(", open+1, close)
+            if(close<open):
+                generate(s+")", open, close+1)
+        generate("", 0 , 0)
+        return self.ans
+        
+class Solution:
     def generateParenthesis(self, n):
         """
         :type n: int
