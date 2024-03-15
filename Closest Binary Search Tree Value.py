@@ -1,4 +1,35 @@
 # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def closestValue(self, root: Optional[TreeNode], target: float) -> int:
+        def traverse(node, target):
+            if node==None:
+                return
+            if node.val==target:
+                self.closest = node.val
+                self.mindiff = 0
+                return
+            diff = abs(target-node.val)
+            if diff< self.mindiff or (diff==self.mindiff and node.val<self.closest):
+                self.closest = node.val
+                self.mindiff = diff
+            if node.val>target:
+                traverse(node.left, target)
+            else:
+                traverse(node.right, target)
+            return
+
+        self.mindiff = float("inf")
+        self.closest = 0
+        traverse(root, target)
+        return self.closest
+
+
+# Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
 #         self.val = x
