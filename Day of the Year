@@ -1,0 +1,18 @@
+class Solution:
+    def dayOfYear(self, date: str) -> int:
+        date = date.split("-")
+        year = int(date[0])
+        month = int(date[1])
+        day = int(date[2])
+        leap = False
+        days = 0
+        days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+        # Check for leap year and adjust February days
+        if year%4==0 and year%100!=0 or year%400==0:
+            days_in_month[1] = 29
+
+        # Calculate day of the year
+        days = sum(days_in_month[:month - 1]) + day
+
+        return days
