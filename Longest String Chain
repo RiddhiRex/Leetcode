@@ -1,0 +1,16 @@
+class Solution:
+    def longestStrChain(self, words: List[str]) -> int:
+        maxlen = 0
+        words = sorted(words, key=len);
+        dp ={}
+        for w in words:
+            dp[w]=1
+            for i in range(len(w)):
+                prev_wrd = w[0:i]+w[i+1:]
+                if(prev_wrd in words):
+                    dp[w] = max(dp[prev_wrd]+1, dp[w])
+            maxlen = max(maxlen, dp[w]);
+        return maxlen
+        
+            
+        
