@@ -1,0 +1,50 @@
+class MaxStack:
+
+    def __init__(self):
+        self.stack = []
+        self.maxstack = []
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if (len(self.maxstack)==0 or x>=self.maxstack[-1][0]):
+            self.maxstack.append((x, len(self.stack)-1))
+
+    def pop(self) -> int:
+        val = self.stack.pop()
+        if val==self.maxstack[-1][0]:
+            self.maxstack.pop()
+        return val
+
+    def top(self) -> int:
+        return self.stack[-1]
+        
+
+    def peekMax(self) -> int:
+        
+        if len(self.maxstack)>0:
+            return self.maxstack[-1][0]
+        return None
+
+    def popMax(self) -> int:
+        maxval, idx = self.maxstack.pop()
+        self.stack.pop(idx)
+        if(len(self.maxstack)>0):
+            new_maxval = self.maxstack[-1][0]
+        else:
+            new_maxval = float("-inf")
+            
+        for i in range(idx, len(self.stack)):
+                if self.stack[i] >= new_maxval:
+                    self.maxstack.append((self.stack[i], i))
+                    new_maxval = self.stack[i]
+        return maxval
+        
+
+
+# Your MaxStack object will be instantiated and called as such:
+# obj = MaxStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.peekMax()
+# param_5 = obj.popMax()
