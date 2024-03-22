@@ -8,4 +8,7 @@ class Solution:
             if x!=y:
                 diff = abs(y-x)
                 heapq.heappush(stones, -diff)
-        return -heapq.heappop(stones)
+        if(len(stones)==1):
+            return -heapq.heappop(stones)
+        else:
+            return 0
