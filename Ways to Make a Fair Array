@@ -1,0 +1,22 @@
+class Solution:
+    def waysToMakeFair(self, nums: List[int]) -> int:
+        total_ways = 0
+        even, odd = sum(nums[0::2]), sum(nums[1::2])
+        print(even, odd)
+        for i, num in enumerate(nums):
+            # remove current number from even or odd
+            if i % 2 == 0: 
+                even -= num
+            else: 
+                odd -= num
+
+            # check if even and odd are equal
+            if even  == odd :
+                total_ways += 1
+            
+            # add to the opposite
+            if i % 2 == 0: 
+                odd += num
+            else: 
+                even += num
+        return total_ways
