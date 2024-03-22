@@ -1,0 +1,31 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def doubleIt(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head==None:
+            return None
+        curr = head;
+        num = 0
+        length = 0
+        while(curr):
+            length +=1
+            n = curr.val
+            num = num*10 + n
+            curr = curr.next
+
+        doubled_num = 2*num
+        idx = 0
+        
+        prev = ListNode(-1)
+        dummy = prev
+        for i in str(doubled_num):
+            prev.next = ListNode(int(i))
+            prev = prev.next
+        return dummy.next
+
+            
+
+        
