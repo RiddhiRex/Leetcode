@@ -1,0 +1,14 @@
+class Solution:
+    def verifyPreorder(self, preorder: List[int]) -> bool:
+        min_num = float("-inf")
+        stack = []
+        for no in preorder:
+            while(stack and stack[-1]<no):
+                min_num = stack.pop()
+                
+            if no<=min_num:
+                return False
+            
+            stack.append(no)
+        return True
+            
