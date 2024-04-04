@@ -1,4 +1,42 @@
 # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        
+        def traversedelete(node, key):
+            if node is None:
+                return None
+           
+            if node.val>key:
+                node.left = traversedelete(node.left, key)
+            elif node.val<key:
+                node.right = traversedelete(node.right, key)
+            else:
+                if node.left is None and node.right is None:
+                    return None
+                elif node.left is None:
+                    return node.right
+                elif node.right is None:
+                    return node.left
+                else:
+                    tmp_node = node.right
+                    while(tmp_node.left!=None):
+                        tmp_node = tmp_node.left
+                    node.val = tmp_node.val
+                    node.right = traversedelete(node.right, tmp_node.val)
+            return node
+          
+        return traversedelete(root, key)
+            
+                
+                
+
+
+# Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
 #         self.val = x
