@@ -1,3 +1,8 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        return x**n
+        
+
 #logic from https://www.youtube.com/watch?v=wAyrtLAeWvI
 #time complexity = O(log n)
 class Solution(object):
