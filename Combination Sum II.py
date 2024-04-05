@@ -1,5 +1,25 @@
 solution 1:
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.ans = []
+        def dfs(nums, trgt, idx, cur_list, total):
+            if total==trgt:
+                if cur_list not in self.ans:
+                    self.ans.append(cur_list)
+            if total>trgt:
+                return
+            for i in range(idx, len(nums)):
+                if i==idx or nums[i-1]!=nums[i]:
+                    dfs(nums, trgt, i+1, cur_list+[nums[i]], total+nums[i])
+            return
+        
+        candidates = sorted(candidates)
+        dfs(candidates, target, 0, [], 0)
+        return self.ans
 
+        
+        
+solution 2:
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         ans = []
@@ -11,7 +31,7 @@ class Solution:
                     ans.append(sorted(j))
         return ans
         
-        solution 2:
+solution 3:
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         def dfs(nums, trgt, idx, ans, path):
