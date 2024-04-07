@@ -1,0 +1,55 @@
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+def inorder_traversal(root, values):
+    if root is None:
+        return
+    inorder_traversal(root.left, values)
+    values.append(root.val)
+    inorder_traversal(root.right, values)
+
+def construct_max_heap(root, values, idx):
+    if root is None:
+        return idx
+    root.val = values[idx]
+    idx += 1
+    idx = construct_max_heap(root.left, values, idx)
+    idx = construct_max_heap(root.right, values, idx)
+    return idx
+
+def binary_tree_to_max_heap(root):
+    if root is None:
+        return
+    values = []
+    inorder_traversal(root, values)
+    values.sort(reverse=True)  # Sort values in descending order
+    index = 0  # Maintain index to track the current value being assigned
+    construct_max_heap(root, values, index)
+
+def print_max_heap(root):
+    if root is None:
+        return
+    print(root.val, end=" ")
+    print_max_heap(root.left)
+    print_max_heap(root.right)
+
+# Example usage:
+# Construct a binary tree
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(6)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3)
+root.right.left = TreeNode(5)
+
+print("Original binary tree:")
+print_max_heap(root)
+
+# Convert binary tree to max heap
+binary_tree_to_max_heap(root)
+
+print("\nMax heap:")
+print_max_heap(root)
