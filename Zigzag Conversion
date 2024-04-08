@@ -1,0 +1,17 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or numRows >= len(s):
+            return s
+        
+        result = [''] * numRows
+        row = 0
+        direction = 1
+        print(result)
+        for char in s:
+            result[row] += char
+            print(result[row])
+            row += direction
+            if row == 0 or row == numRows - 1:
+                direction *= -1
+        print(result)
+        return ''.join(result)
