@@ -2,6 +2,23 @@ class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         dic = collections.Counter(words)
         ans = []
+        heap = []
+        for key, val in dic.items():
+            heap.append([-val, key])
+        heapq.heapify(heap)
+        while(k>0):
+            ans.append(heapq.heappop(heap)[1])
+            k-=1
+        return ans
+
+
+        
+        
+        
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        dic = collections.Counter(words)
+        ans = []
         result = sorted(dic.items(), key=lambda item: (-item[1], item[0])) 
         print(result)
         ans = [each[0] for each in result]
