@@ -1,0 +1,38 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endofwrd = False
+
+class WordDictionary:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word: str) -> None:
+        node = self.root
+        for w in word:
+            if w not in node.children:
+                node.children[w]=TrieNode()
+            node = node.children[w]
+        node.endofwrd = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        queue = [[curr, word]]
+        while(queue):
+            curr, cur_str  = queue.pop()
+            if cur_str=="" and curr.endofwrd==True:
+                return True
+
+            if cur_str and cur_str[0] ==".":
+                for each in curr.children:
+                    queue.append([curr.children[each], cur_str[1:]])
+            elif cur_str and cur_str[0] in curr.children:
+                queue.append([curr.children[cur_str[0]], cur_str[1:]])
+        return False
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
